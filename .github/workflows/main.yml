@@ -1,39 +1,9 @@
-name: Actions 😎
+name: CI
 on:
   pull_request: {}
   push: { branches: [master] }
 
 jobs:
-  testRunnerInAllModes:
-    name: Test all modes ✨
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout repository (required to test local actions)
-      - name: Checkout repository
-        uses: actions/checkout@v1
-
-      # Activate license
-      - name: Activate Unity
-        uses: webbertakken/unity-activate@v1
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
-      # Configure test runner
-      - name: Run tests
-        id: allTests
-        uses: ./
-        env:
-          TEST_MODE: all
-          PROJECT_PATH: unity-project-with-correct-tests
-          # Test implicit ARTIFACTS_PATH, by not setting it
-
-      # Upload artifacts
-      - name: Upload test results
-        uses: actions/upload-artifact@v1
-        with:
-          name: Test results (all)
-          path: ${{ steps.allTests.outputs.artifactsPath }}
-
   testRunnerInEditMode:
     name: Test edit mode 📝
     runs-on: ubuntu-latest
@@ -50,83 +20,9 @@ jobs:
 
       # Configure test runner
       - name: Run tests
-        id: editMode
         uses: ./
-        env:
-          TEST_MODE: editmode
-          PROJECT_PATH: unity-project-with-correct-tests
-          ARTIFACTS_PATH: artifacts/editmode
-
-      # Upload artifacts
-      - name: Upload test results
-        uses: actions/upload-artifact@v1
         with:
-          name: Test results (edit mode)
-          path: ${{ steps.editMode.outputs.artifactsPath }}
-
-  testRunnerInPlayMode:
-    name: Test play mode 📺
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout repository (required to test local actions)
-      - name: Checkout repository
-        uses: actions/checkout@v1
-
-      # Activate license
-      - name: Activate Unity
-        uses: webbertakken/unity-activate@v1
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
-      # Configure test runner
-      - name: Run tests
-        id: playMode
-        uses: ./
-        env:
-          TEST_MODE: playmode
-          PROJECT_PATH: unity-project-with-correct-tests
-          ARTIFACTS_PATH: artifacts/editmode
-
-      # Upload artifacts
-      - name: Upload test results
-        uses: actions/upload-artifact@v1
-        with:
-          name: Test results (play mode)
-          path: ${{ steps.playMode.outputs.artifactsPath }}
-
-  testRunnerInEachModeSeparately:
-    name: Test each mode sequentially 👩‍👩‍👧‍👦 # don't try this at home (it's much slower)
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout repository (required to test local actions)
-      - name: Checkout repository
-        uses: actions/checkout@v1
-
-      # Activate license
-      - name: Activate Unity
-        uses: webbertakken/unity-activate@v1
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
-      # Configure first test runner
-      - name: Tests in editmode 📝
-        uses: ./
-        env:
-          TEST_MODE: editmode
-          PROJECT_PATH: unity-project-with-correct-tests
-          ARTIFACTS_PATH: artifacts/editmode
-
-      # Configure second test runner
-      - name: Tests in playmode 📺
-        uses: ./
-        env:
-          TEST_MODE: playmode
-          PROJECT_PATH: unity-project-with-correct-tests
-          ARTIFACTS_PATH: artifacts/playmode
-
-      # Upload combined artifacts
-      - name: Upload combined test results
-        uses: actions/upload-artifact@v1
-        with:
-          name: Test results (combined)
-          path: artifacts/
+          args: "-runTests" 
+      
+      - uses: webbertakken/unity-return-license@v1
+        if: always()
