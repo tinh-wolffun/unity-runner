@@ -13,3 +13,4 @@
   -silent-crashes \
   $INPUT_ARGS
   
+  ls -l
