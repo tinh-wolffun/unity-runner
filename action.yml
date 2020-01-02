@@ -1,6 +1,6 @@
 name: 'Unity - Test runner'
-author: Webber Takken <webber@takken.io>
-description: 'Run tests for any Unity project.'
+author: Paul Pacheco <paulpach@gmail.com>
+description: 'Run unity in batch mode'
 inputs: 
   args:
     required: true
