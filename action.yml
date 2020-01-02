@@ -1,4 +1,4 @@
-name: 'Unity - Test runner'
+name: 'Unity Runner'
 author: Paul Pacheco <paulpach@gmail.com>
 description: 'Run unity in batch mode'
 inputs: 
