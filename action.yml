@@ -1,10 +1,10 @@
 name: 'Unity - Test runner'
 author: Webber Takken <webber@takken.io>
 description: 'Run tests for any Unity project.'
-inputs: {}
-outputs:
-  artifactsPath:
-    description: 'Path where the artifacts are stored'
+inputs: 
+  args:
+    required: true
+    description: 'Arguments to pass to unity'
 runs:
   using: 'docker'
   image: 'Dockerfile'
