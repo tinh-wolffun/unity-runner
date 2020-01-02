@@ -1,15 +1,11 @@
-# Unity - Test runner
+# Unity - Runner
 [![Actions status](https://github.com/webbertakken/unity-test-runner/workflows/Actions%20%F0%9F%98%8E/badge.svg)](https://github.com/webbertakken/unity-test-runner/actions?query=branch%3Amaster+workflow%3A%22Actions+%F0%9F%98%8E%22)
 
 ---
 
 GitHub Action to 
-[run tests](https://github.com/marketplace/actions/unity-test-runner) 
+[run unity](https://github.com/marketplace/actions/unity-test-runner) 
 for any Unity project. 
-
-Part of the 
-[Unity Actions](https://github.com/webbertakken/unity-actions) 
-collection.
 
 ---
 
