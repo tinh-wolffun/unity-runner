@@ -22,7 +22,7 @@ jobs:
       - name: Run tests
         uses: ./
         with:
-          args: "-runTests" 
+          args: -runTests -projectPath unity-project-with-correct-tests
       
       - name: Return License
         if: always()
