@@ -1,4 +1,4 @@
-FROM gableroux/unity3d:2019.2.11f1
+FROM gableroux/unity3d:2019.3.0f1
 
 LABEL "com.github.actions.name"="Unity Runner"
 LABEL "com.github.actions.description"="Run unity any Unity project."
