@@ -6,11 +6,10 @@
 # Testing in EditMode
 #
 
+xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
 /opt/Unity/Editor/Unity \
   -batchmode \
   -nographics \
   -logfile /dev/stdout \
   -silent-crashes \
   $INPUT_ARGS
-  
-  ls -l
