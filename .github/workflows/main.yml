@@ -43,6 +43,7 @@ jobs:
           workdir: unity-project-with-correct-tests
       
       - name: Return license
+        if: always()
         uses: ./
         with:
           args: -returnlicense -quit      
