@@ -9,7 +9,7 @@ xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
     -quit \
     -createManualActivationFile
 
-FILE_NAME=Unity_v*.alf
+FILE_NAME=$(ls Unity_v*.alf)
 FILE_PATH=$FILE_NAME
 
 # Output the resulting file by copying
