@@ -5,6 +5,11 @@ inputs:
   args:
     required: true
     description: 'Arguments to pass to unity'
+  workdir:
+    required: false
+    default: ''
+    description: 'working directory'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
