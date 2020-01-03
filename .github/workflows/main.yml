@@ -7,6 +7,9 @@ jobs:
   requestActivationFile:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Request manual activation file
         uses: ./
         id: getManualLicenseFile
@@ -28,7 +31,7 @@ jobs:
     steps:
       # Checkout repository (required to test local actions)
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Activate license
         uses: ./
