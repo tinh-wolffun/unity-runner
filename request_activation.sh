@@ -19,5 +19,5 @@ cp $FILE_NAME $HOME/$FILE_PATH
 echo ::set-output name=filePath::$FILE_PATH
 
 # Explain what to do next
-echo "Use the file \"$FILE_PATH\" for manual activation."
+echo "Upload $FILE_PATH to https://license.unity3d.com/manual"
 echo "Set the contents of the resulting license file as the \$UNITY_LICENSE variabe."
