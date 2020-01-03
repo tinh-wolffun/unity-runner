@@ -18,14 +18,8 @@ jobs:
 
       - name: Activate license
         uses: ./
-        continue-on-error: true
         with:
-          args: -manualLicenseFile UnityLicenseFile.ulf -quit
-
-      - name: Verify activation
-        uses: ./
-        with:
-          args: -quit
+          entrypoint: activate.sh
 
       # Configure test runner
       - name: Run tests
