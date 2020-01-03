@@ -10,6 +10,8 @@ LABEL "homepage"="http://github.com/MirrorNG/unity-runner"
 LABEL "maintainer"="Paul Pacheco <paulpach@gmail.com>"
 
 ADD entrypoint.sh /entrypoint.sh
+ADD activate.sh /activate.sh
 RUN chmod +x /entrypoint.sh
+RUN chmod +x /activate.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
