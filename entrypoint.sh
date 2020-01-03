@@ -10,6 +10,10 @@ if [ -n "$INPUT_WORKDIR" ] ; then
   cd "$INPUT_WORKDIR"
 fi
 
+pwd
+
+ls -l
+
 xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
 /opt/Unity/Editor/Unity \
   -batchmode \
