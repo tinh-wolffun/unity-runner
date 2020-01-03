@@ -7,16 +7,20 @@ jobs:
   testRunnerInEditMode:
     name: Test edit mode 📝
     runs-on: ubuntu-latest
+    env:
+      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
     steps:
       # Checkout repository (required to test local actions)
       - name: Checkout repository
         uses: actions/checkout@v1
 
+      - run: echo "$UNITY_LICENSE" | tr -d '\r' > UnityLicenseFile.ulf
+        
       # Activate license
-      - name: Activate Unity
-        uses: webbertakken/unity-activate@v1
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      - name: Run tests
+        uses: ./
+        with:
+          args: -manualLicenseFile UnityLicenseFile.ulf -quit         
 
       # Configure test runner
       - name: Run tests
@@ -24,5 +28,9 @@ jobs:
         with:
           args: "-runTests" 
       
-      - uses: webbertakken/unity-return-license@v1
+      - name: Return License
         if: always()
+        uses: ./
+        with:
+          # Arguments to pass to unity
+          args: -returnlicense -quit
