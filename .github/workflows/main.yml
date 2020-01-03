@@ -5,18 +5,19 @@ on:
 
 jobs:
   requestActivationFile:
-    # Request manual activation file
-    - name: Request manual activation file
-      uses: ./
-      id: getManualLicenseFile
-      with:
-        entrypoint: /request_activation.sh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request manual activation file
+        uses: ./
+        id: getManualLicenseFile
+        with:
+            entrypoint: /request_activation.sh
 
-    - name: Expose as artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: Manual Activation File
-        path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v1
+        with:
+            name: Manual Activation File
+            path: ${{ steps.getManualLicenseFile.outputs.filePath }}
   
 
   testRunnerInEditMode:
