@@ -11,4 +11,7 @@ LABEL "maintainer"="Paul Pacheco <paulpach@gmail.com>"
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+USER 1001:115
+
 ENTRYPOINT ["/entrypoint.sh"]
