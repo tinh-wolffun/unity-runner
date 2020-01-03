@@ -11,6 +11,7 @@ LABEL "maintainer"="Paul Pacheco <paulpach@gmail.com>"
 
 ADD entrypoint.sh /entrypoint.sh
 ADD activate.sh /activate.sh
+ADD request_activation.sh /request_activation.sh
 RUN chmod +x /entrypoint.sh
 RUN chmod +x /activate.sh
 RUN chmod +x /request_activation.sh
