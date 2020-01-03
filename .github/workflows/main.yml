@@ -45,9 +45,10 @@ jobs:
           args: -runTests -projectPath .
           workdir: unity-project-with-correct-tests
       
-      - name: Return license
-        if: always()
-        uses: ./
-        with:
-          args: -returnlicense -quit      
+      # no need to return license for personal licenses
+      #- name: Return license
+      #  if: always()
+      #  uses: ./
+      #  with:
+      #    args: -returnlicense -quit      
 
