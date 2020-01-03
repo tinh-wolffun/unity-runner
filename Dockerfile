@@ -13,5 +13,6 @@ ADD entrypoint.sh /entrypoint.sh
 ADD activate.sh /activate.sh
 RUN chmod +x /entrypoint.sh
 RUN chmod +x /activate.sh
+RUN chmod +x /request_activation.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

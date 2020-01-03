@@ -2,6 +2,5 @@
 *
 
 # Files required for the action
-!entrypoint.sh
-!activate.sh
+!*.sh
 !action.yml

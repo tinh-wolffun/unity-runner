@@ -9,6 +9,9 @@ inputs:
     required: false
     default: ''
     description: 'working directory'
+outputs:
+  filePath:
+    description: 'Path of the manual activation file'
 
 runs:
   using: 'docker'
