@@ -6,7 +6,7 @@
 # Testing in EditMode
 #
 
-if [! -z "$INPUT_WORKDIR" ] ; then
+if [ -n "$INPUT_WORKDIR" ] ; then
   cd "$INPUT_WORKDIR"
 fi
 
