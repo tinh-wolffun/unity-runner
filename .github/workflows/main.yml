@@ -14,8 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - run: echo "$UNITY_LICENSE" | tr -d '\r' > UnityLicenseFile.ulf
-
       - name: Activate license
         uses: ./
         with:
