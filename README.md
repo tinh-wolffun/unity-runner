@@ -36,7 +36,7 @@ jobs:
             path: ${{ steps.getManualLicenseFile.outputs.filePath }}
 ```
 
-This will generate a manual activation license request file.  Save this file and upload it to https://license.unity3d.com/manual
+Commit and push this so it runs once. This will generate a manual activation license request file.  Save this file and upload it to https://license.unity3d.com/manual
 
 That will generate a license file for personal.  Go back to your github project and navigate to Settings -> Secrets
 
