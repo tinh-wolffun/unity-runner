@@ -4,74 +4,66 @@
 ---
 
 GitHub Action to 
-[run unity](https://github.com/marketplace/actions/unity-test-runner) 
+[run unity](https://github.com/marketplace/actions/unity-runner) 
 for any Unity project. 
 
 ---
 
-This is a recommended step to prepare your pipeline for using the 
-[Build](https://github.com/webbertakken/unity-actions#build)
-action. This action also requires the [activation](https://github.com/marketplace/actions/unity-activate) step.
-
-## Documentation
-
-See the 
-[Unity Actions](https://github.com/webbertakken/unity-actions)
-collection repository for workflow documentation and reference implementation.
-
 ## Usage
 
-Create or edit the file called `.github/workflows/main.yml` and add a job to it.
+Create or edit the file called `.github/workflows/main.yml` and add a request activation file job
 
 ```yaml
 name: Test project
 on: [push]
 jobs:
-  testRunnerInAllModes:
-    name: Test all modes ✨
+  requestActivationFile:
     runs-on: ubuntu-latest
     steps:
-```
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-Configure the test runner as follows:
+      - name: Request manual activation file
+        uses: MirrorNG/unity-runner@2.0.0
+        id: getManualLicenseFile
+        with:
+            entrypoint: /request_activation.sh
 
-```yaml
-      # Configure test runner
-      - name: Run tests
-        id: myTestStep
-        uses: webbertakken/unity-test-runner@v1.1
-        env:
-          # Choose: "all", "playmode", "editmode"
-          TEST_MODE: all
-          
-          # Optional: Path to your project, leave blank for "./"
-          PROJECT_PATH: relative/path/to/your/project
-
-          # Optional: Artifacts path, leave blank for "artifacts"
-          ARTIFACTS_PATH: store/artifacts/here
-```
-
-You use the id to **upload the artifacts** like so:
-
-```yaml
-      # Upload artifacts
-      - name: Upload test results
+      - name: Expose as artifact
         uses: actions/upload-artifact@v1
         with:
-          name: Test results
-          path: ${{ steps.myTestStep.outputs.artifactsPath }}
+            name: Manual Activation File
+            path: ${{ steps.getManualLicenseFile.outputs.filePath }}
 ```
 
-Commit and push your workflow definition.
+This will generate a manual activation license request file.  Save this file and upload it to https://license.unity3d.com/manual
 
-## More actions
+That will generate a license file for personal.  Go back to your github project and navigate to Settings -> Secrets
 
-Visit 
-[Unity Actions](https://github.com/webbertakken/unity-actions) 
-to find related actions for Unity.
+create a secret called UNITY_LICENSE and paste inside the content of the license file.
 
-Feel free to contribute.
+Now add a job to run unity cli on your project.  You will need a step to activate unity and another step to run unity with any command line argument you want.  For example:
 
-## Licence 
+```yaml
+testRunnerInEditMode:
+    name: Test edit mode 📝
+    runs-on: ubuntu-latest
+    env:
+      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}   
+    steps:
+      # Checkout repository (required to test local actions)
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-[MIT](./LICENSE)
+      - name: Activate license
+        uses: MirrorNG/unity-runner@2.0.0
+        with:
+          entrypoint: /activate.sh
+
+      - name: Run tests
+        uses: MirrorNG/unity-runner@2.0.0
+        with:
+          args: -runTests -projectPath .
+```
+
+See the [Unity's documentation](https://docs.unity3d.com/Manual/CommandLineArguments.html) for a full list of all available argument options.
