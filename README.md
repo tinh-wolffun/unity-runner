@@ -1,5 +1,5 @@
 # Unity - Runner
-[![Actions status](https://github.com/webbertakken/unity-test-runner/workflows/Actions%20%F0%9F%98%8E/badge.svg)](https://github.com/webbertakken/unity-test-runner/actions?query=branch%3Amaster+workflow%3A%22Actions+%F0%9F%98%8E%22)
+[![CI](https://github.com/MirrorNG/unity-runner/workflows/CI/badge.svg)](https://github.com/MirrorNG/unity-runner/actions?query=workflow%3ACI)
 
 ---
 
