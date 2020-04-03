@@ -9,11 +9,27 @@ LABEL "repository"="http://github.com/MirrorNG/unity-runner"
 LABEL "homepage"="http://github.com/MirrorNG/unity-runner"
 LABEL "maintainer"="Paul Pacheco <paulpach@gmail.com>"
 
-ADD entrypoint.sh /entrypoint.sh
-ADD activate.sh /activate.sh
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends default-jre && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
+    apt-get autoremove -y 
+    
+# install sonar scanner
+RUN /opt/Unity/Editor/Data/NetCore/Sdk-2.2.107/dotnet tool install dotnet-sonarscanner --tool-path . --version 4.7.1
+
+COPY unity_csc.sh.patch .
+RUN patch /opt/Unity/Editor/Data/Tools/RoslynScripts/unity_csc.sh unity_csc.sh.patch
+
+COPY entrypoint.sh /entrypoint.sh
+COPY activate.sh /activate.sh
+COPY sonar-scanner.sh /sonar-scanner.sh
+
+ENV DOTNET_ROOT=/opt/Unity/Editor/Data/NetCore/Sdk-2.2.107/
+
 ADD request_activation.sh /request_activation.sh
 RUN chmod +x /entrypoint.sh
 RUN chmod +x /activate.sh
 RUN chmod +x /request_activation.sh
+RUN chmod +x /sonar-scanner.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
