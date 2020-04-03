@@ -42,10 +42,13 @@ That will generate a license file for personal.  Go back to your github project 
 
 create a secret called UNITY_LICENSE and paste inside the content of the license file.
 
-Now add a job to run unity cli on your project.  You will need a step to activate unity and another step to run unity with any command line argument you want.  For example:
+You can disable the job by adding `if: false()` or commenting it out, you only needed it to generate the license.
+
+Add a job to run unity cli on your project.  You will need a step to activate unity and another step to run unity with any command line argument you want.  For example:
 
 ```yaml
-testRunnerInEditMode:
+jobs:
+  testRunnerInEditMode:
     name: Test edit mode 📝
     runs-on: ubuntu-latest
     env:
