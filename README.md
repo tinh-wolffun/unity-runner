@@ -7,6 +7,8 @@ GitHub Action to
 [run unity](https://github.com/marketplace/actions/unity-runner) 
 for any Unity project. 
 
+This Action also includes [SonarScanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/) and [DocFX](https://dotnet.github.io/docfx/) installs
+
 ---
 
 ## Usage
