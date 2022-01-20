@@ -1,5 +1,5 @@
 # Unity - Runner
-[![CI](https://github.com/MirrorNG/unity-runner/workflows/CI/badge.svg)](https://github.com/MirrorNG/unity-runner/actions?query=workflow%3ACI)
+[![CI](https://github.com/MirageNet/unity-runner/workflows/CI/badge.svg)](https://github.com/MirageNet/unity-runner/actions?query=workflow%3ACI)
 
 ---
 
@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Request manual activation file
-        uses: MirrorNG/unity-runner@3.1.0
+        uses: MirageNet/unity-runner@3.1.0
         id: getManualLicenseFile
         with:
             entrypoint: /request_activation.sh
@@ -61,12 +61,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Activate license
-        uses: MirrorNG/unity-runner@3.1.0
+        uses: MirageNet/unity-runner@3.1.0
         with:
           entrypoint: /activate.sh
 
       - name: Run tests
-        uses: MirrorNG/unity-runner@3.1.0
+        uses: MirageNet/unity-runner@3.1.0
         with:
           args: -runTests -projectPath .
 ```

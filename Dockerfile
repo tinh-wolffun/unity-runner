@@ -5,8 +5,8 @@ LABEL "com.github.actions.description"="Run unity any Unity project."
 LABEL "com.github.actions.icon"="box"
 LABEL "com.github.actions.color"="gray-dark"
 
-LABEL "repository"="http://github.com/MirrorNG/unity-runner"
-LABEL "homepage"="http://github.com/MirrorNG/unity-runner"
+LABEL "repository"="http://github.com/MirageNet/unity-runner"
+LABEL "homepage"="http://github.com/MirageNet/unity-runner"
 LABEL "maintainer"="Paul Pacheco <paulpach@gmail.com>"
 
 RUN apt install gnupg ca-certificates && \
